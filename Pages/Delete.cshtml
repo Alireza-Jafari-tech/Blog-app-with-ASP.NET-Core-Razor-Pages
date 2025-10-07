@@ -1,0 +1,74 @@
+@page "{id:int}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Delete Post";
+}
+
+<section class="container delete-section">
+    @if (Model.Post != null)
+    {
+        <div class="delete-card">
+            <h2 class="section-title">Delete Post</h2>
+
+            <p class="delete-warning">
+                Are you sure you want to delete this post? This action cannot be undone.
+            </p>
+
+            <div class="image-preview">
+                @if (!string.IsNullOrEmpty(Model.Post.ImageUrl))
+                {
+                    <img src="@Model.Post.ImageUrl" alt="@Model.Post.Title" class="delete-image" />
+                }
+            </div>
+            <form method="post" class="delete-form">
+
+                <input asp-for="Post.Id" type="hidden">
+
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input asp-for="Post.Title" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Post.Slug"></label>
+                    <input asp-for="Post.Slug" class="form-control" />
+                    <span asp-validation-for="Post.Slug" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea asp-for="Post.Description" class="form-control" rows="3" readonly></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="ImageUrl">Image URL</label>
+                    <input asp-for="Post.ImageUrl" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label for="Content">Content</label>
+                    <textarea asp-for="Post.Content" class="form-control" rows="8" readonly></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="DateCreated">Created On</label>
+                    <input asp-for="Post.DateCreated" class="form-control" readonly />
+                </div>
+
+                <div class="delete-actions">
+                    <button type="submit" class="btn btn-delete">Yes, Delete</button>
+                    <a asp-page="/Index" class="btn btn-back" style="background-color: #3A90EE;">Cancel</a>
+                </div>
+            </form>
+            
+        </div>
+    }
+    else
+    {
+        <p>Post not found.</p>
+    }
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

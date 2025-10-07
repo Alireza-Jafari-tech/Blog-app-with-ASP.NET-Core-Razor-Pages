@@ -1,0 +1,151 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+  /* ===== Index Page Styling ===== */
+
+.posts-section {
+    padding: 3rem 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--teal);
+    margin-bottom: 2.5rem;
+}
+
+/* Cards grid layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Each post card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card media (image) */
+.card-media img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card content */
+.card-body {
+  padding: 20px 1.2rem;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+}
+
+.card-title a {
+    color: var(--orange);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.card-title a:hover {
+    color: var(--teal);
+}
+
+/* Card excerpt / description */
+.card-excerpt {
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Card meta (date + learn more link) */
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.card-date {
+    font-style: italic;
+}
+
+/* Learn more button */
+.learn-more {
+  text-decoration: none;
+  transition: color 0.3s;
+  background-color: #9B5DE0;
+  color: #fff;
+  padding: 9px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.learn-more:hover {
+    @* color: var(--orange); *@
+}
+
+/* Responsive tweaks */
+@@media (max-width: 768px) {
+    .card-media img {
+        height: 180px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+</style>
+
+<section class="container posts-section">
+    <h2 class="section-title">Latest Posts</h2>
+
+    <div class="cards-grid">
+        @foreach (var post in Model.Posts)
+        {
+            <article class="card">
+                <a class="card-media" asp-page="/Read" asp-route-id="@post.Id" aria-label="Read: @post.Title">
+                    @if (!string.IsNullOrEmpty(post.ImageUrl))
+                    {
+                        <img src="@post.ImageUrl" alt="@post.Title" />
+                    }
+                    else
+                    {
+                        <img src="~/images/default-placeholder.png" alt="No image" />
+                    }
+                </a>
+
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a asp-page="/Read" asp-route-id="@post.Id">@post.Title</a>
+                    </h3>
+                    <p class="card-excerpt">@post.Description</p>
+                    <div class="card-meta">
+                        <span class="card-date">@post.DateCreated.ToString("MMMM dd, yyyy")</span>
+                        <a class="learn-more" asp-page="/Read" asp-route-id="@post.Id">Learn more</a>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>

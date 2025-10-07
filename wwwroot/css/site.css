@@ -1,0 +1,298 @@
+/* ===== Base Styles ===== */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); */
+
+/* :root {
+    --orange: #000;
+    --cream: #F8EFD4;
+    --green: #05339C;
+    --teal: #1055C9;
+    --text-dark: #333;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fdcffa;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+p {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+/* ===== Containers ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Header ===== */
+.site-header {
+  background-color: #4e56c0;
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  /* color: #808080; */
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  padding: 2rem 0;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background-color: #4e56c0;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+  /* border-top: 4px solid var(--orange); */
+}
+
+/* ===== Buttons ===== */
+button,
+.btn {
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+button:hover,
+.btn:hover {
+  /* background-color: var(--teal); */
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
+
+/* ----------------- */
+
+/* ===== Create and upadte(shared) Pages (Form Styling) ===== */
+
+.form-section {
+  padding: 3rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+
+.blog-form {
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 2px solid #4e56c0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 4px rgba(255, 122, 61, 0.3);
+  outline: none;
+}
+
+.text-danger {
+  color: crimson;
+  font-size: 0.85rem;
+}
+
+/* Action buttons */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.form-actions .btn {
+  padding: 0.6rem 1.4rem;
+  font-weight: bold;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .blog-form {
+    padding: 1.2rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ===== Delete Page ===== */
+
+.delete-section {
+  padding: 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.delete-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  text-align: center;
+}
+
+.delete-warning {
+  color: crimson;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.delete-preview img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.delete-preview h3 {
+  color: var(--orange);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.delete-preview p {
+  color: #555;
+  margin-bottom: 0.4rem;
+}
+
+.delete-date {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.delete-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-delete {
+  background-color: crimson;
+}
+
+.btn-delete:hover {
+  background-color: #a00000;
+}
+
+.btn-back {
+  background-color: var(--green);
+}
+
+.btn-back:hover {
+  background-color: var(--teal);
+}
+
+@media (max-width: 768px) {
+  .delete-card {
+    padding: 1.5rem;
+  }
+
+  .delete-actions {
+    flex-direction: column;
+  }
+
+  .delete-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ------------------ */
+
+/* in edit and delete pages=> */
+.image-preview {
+  width: 250px;
+  margin: auto;
+  border-radius: 20px;
+}
+.image-preview img {
+  width: 100%;
+  max-height: 250px;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
+}

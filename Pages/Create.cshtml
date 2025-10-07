@@ -1,0 +1,58 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Create Post";
+}
+
+@* <style>
+    .form-section h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style> *@
+
+<section class="container form-section">
+    <h2 class="section-title">Create New Post</h2>
+
+    <form method="post" class="blog-form">
+
+        <div class="form-group">
+            <label asp-for="Post.Title"></label>
+            <input asp-for="Post.Title" class="form-control" placeholder="Enter post title" />
+            <span asp-validation-for="Post.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Post.ImageUrl"></label>
+            <input asp-for="Post.ImageUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+            <span asp-validation-for="Post.ImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Post.Slug"></label>
+            <input asp-for="Post.Slug" class="form-control" />
+            <span asp-validation-for="Post.Slug" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Post.Description"></label>
+            <textarea asp-for="Post.Description" class="form-control" rows="3" placeholder="Short description..."></textarea>
+            <span asp-validation-for="Post.Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Post.Content"></label>
+            <textarea asp-for="Post.Content" class="form-control" rows="8" placeholder="Write your post content here..."></textarea>
+            <span asp-validation-for="Post.Content" class="text-danger"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn" style="background-color: #00ff40;">Create Post</button>
+            <a asp-page="/Index" class="btn btn-back">Cancel</a>
+        </div>
+    </form>
+</section>
+
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@

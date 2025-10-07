@@ -1,0 +1,67 @@
+@page "{id:int}"
+@model EditModel
+
+@{
+    ViewData["Title"] = "Edit Post";
+}
+
+<section class="container form-section">
+    <h2 class="section-title" style="text-align: center;margin-bottom: 20px;">Edit Post</h2>
+
+    @if (!string.IsNullOrEmpty(Model.Post.ImageUrl))
+    {
+        <div class="image-preview">
+            <img src="@Model.Post.ImageUrl" alt="@Model.Post.Title" />
+        </div>
+    }
+
+    @if (Model.Post != null)
+    {
+        <form method="post" class="blog-form">
+            <input type="hidden" asp-for="Post.Id" />
+
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input asp-for="Post.Title" class="form-control" readonly/>
+                <span asp-validation-for="Post.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ImageUrl">Image URL</label>
+                <input asp-for="Post.ImageUrl" class="form-control" readonly/>
+                <span asp-validation-for="Post.ImageUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Post.Slug"></label>
+                <input asp-for="Post.Slug" class="form-control" readonly/>
+                <span asp-validation-for="Post.Slug" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea asp-for="Post.Description" class="form-control" rows="3" readonly></textarea>
+                <span asp-validation-for="Post.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Content">Content</label>
+                <textarea asp-for="Post.Content" class="form-control" rows="8" readonly></textarea>
+                <span asp-validation-for="Post.Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn" style="background-color: #4E56C0;">Update Post</button>
+                <a asp-page="/Index" class="btn btn-back" style="background-color: #3A90EE;">Cancel</a>
+            </div>
+        </form>
+    }
+    else
+    {
+        <p>Post not found.</p>
+    }
+</section>
+
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@

@@ -1,0 +1,126 @@
+@page "{id:int}"
+@model ReadModel
+@{
+    ViewData["Title"] = Model.Post?.Title ?? "Read Post";
+}
+
+<style>
+  /* ===== Read Page ===== */
+
+.read-section {
+    padding: 3rem 0;
+}
+
+.read-post {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.read-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.read-title {
+    color: var(--orange);
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+.read-date {
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Post content styling */
+.read-content {
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+.read-content p {
+    margin-bottom: 1.2rem;
+}
+
+.read-content h2, .read-content h3 {
+    color: var(--teal);
+    margin-top: 1.6rem;
+}
+
+/* Action buttons */
+.read-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: flex-end;
+}
+
+.btn-delete {
+    background-color: crimson;
+}
+
+.btn-delete:hover {
+    background-color: #a40000;
+}
+
+.btn-back {
+    background-color: var(--green);
+}
+
+.btn-back:hover {
+    background-color: var(--teal);
+}
+
+/* Responsive layout */
+@@media (max-width: 768px) {
+    .read-post {
+        padding: 1.2rem;
+    }
+
+    .read-title {
+        font-size: 1.6rem;
+    }
+}
+
+</style>
+
+<section class="container read-section">
+    @if (Model.Post != null)
+    {
+        <article class="read-post">
+            @if (!string.IsNullOrEmpty(Model.Post.ImageUrl))
+            {
+                <div class="read-image">
+                    <img src="@Model.Post.ImageUrl" alt="@Model.Post.Title" />
+                </div>
+            }
+
+            <h1 class="read-title">@Model.Post.Title</h1>
+            <p class="read-date">@Model.Post.DateCreated.ToString("MMMM dd, yyyy")</p>
+
+            <div class="read-content" style="white-space: pre-line;" >
+                @Html.Raw(Model.Post.Content)
+            </div>
+
+            <div class="read-actions">
+                <a asp-page="/Edit" asp-route-id="@Model.Post.Id" class="btn" style="background-color: #4E56C0;">Edit</a>
+                <a asp-page="/Delete" asp-route-id="@Model.Post.Id" class="btn btn-delete" style="background-color: #ff0000;">Delete</a>
+                <a asp-page="/Index" class="btn btn-back" style="background-color: #3A90EE;">← Back to Posts</a>
+            </div>
+        </article>
+    }
+    else
+    {
+        <p>Post not found.</p>
+    }
+</section>
